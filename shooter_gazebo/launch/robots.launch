@@ -1,0 +1,28 @@
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+  <param name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/shooter.xacro' "/>
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x 1 -y 1 -z 0" />
+      <arg name="robot_name" value="robot_1" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x -1 -y 1 -z 0" />
+      <arg name="robot_name" value="robot_2" />
+    </include>
+  </group>
+</launch>
+
+<!-- MULTIPLE ROBOT SIMULATION ON GAZEBO 
+        https://answers.ros.org/question/360480/multi-robot-simulation-on-gazebo/-->
+        

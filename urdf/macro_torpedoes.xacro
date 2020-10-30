@@ -1,0 +1,7 @@
+<?xml version="1.0">
+<robot name="macro_torpedoes" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:torpedoes_macro robot_namespace="${namespace" torpedoes_id="0"> 
+    
+
+</robot> 

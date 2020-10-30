@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="shooter" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:property name="visual_mesh_file" value="file://$(find shooter_description)/meshes/shooter.dae" />
+<xacro:property name="visual_mesh_file" value="file://$(find shooter_description)/meshes/base_simulacion_origen_corregido.dae" />
 
 <link name="base_link">
     <visual>

@@ -10,34 +10,28 @@
   <!-- BEGIN ROBOT 1-->
   <group ns="robot1">
     <param name="tf_prefix" value="robot1_tf" />
-    <!-- include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
-      <arg name="init_pose" value="-x 0 -y 0 -z 0" />
-      <arg name="robot_name" value="robot_1" />
-    </include-->
+    
+    <arg name="init_pose" value="'-x -10 -y -10 -z 5'"/>
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="'-x 0 -y 0 -z 0' -urdf -param /robot_description -model shooter"/>
+     args= "'-x 15 -y -15 -z 0' -urdf -param /robot_description -model shooter"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
   <!-- BEGIN ROBOT 2-->
   <group ns="robot2">
     <param name="tf_prefix" value="robot2_tf" />
-    <!-- include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
-      <arg name="init_pose" value="-x 0 -y 0 -z 0" />
-      <arg name="robot_name" value="robot_2" />
-    </include-->
+
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="'-x 0 -y -5 -z 0' -urdf -param /robot_description_2 -model torpedoes_0"/>
+     args="'-x 15 -y -15 -z 0' -urdf -param /robot_description_2 -model torpedoes_0"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
   <!-- BEGIN ROBOT 3-->
   <group ns="robot3">
     <param name="tf_prefix" value="robot3_tf" />
-    <!-- include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
-      <arg name="init_pose" value="-x 0 -y 0 -z 0" />
-      <arg name="robot_name" value="robot_2" />
-    </include-->
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
      args="'-x 0 -y 5 -z 0' -urdf -param /robot_description_2 -model torpedoes_1"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
   </group>
 
 </launch>

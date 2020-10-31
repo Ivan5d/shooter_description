@@ -1,7 +1,39 @@
-<?xml version="1.0">
+<?xml version="1.0"?>
 <robot name="macro_torpedoes" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:torpedoes_macro robot_namespace="${namespace" torpedoes_id="0"> 
-    
+<!-- Introducir meshes -->
+<xacro:property name="visual_mesh_file" value="file://$(find shooter_description)/meshes/Torpedo_simulacion_origen_corregido.dae" />
+
+<xacro:macro name="macro_torpedoes" params="id">
+<!-- <origin xyz="0.085 (0 -0.085) 0 0" rpy="0.0 0.0 1.57075"/> -->
+
+<link name="torpedoes_${id}">
+    <visual>
+        <origin xyz="0.085 0 0" rpy="0.0 0.0 1.57075"/>
+        <geometry>
+            <mesh filename="${visual_mesh_file}" scale="0.001 0.001 0.001" />      
+        </geometry>
+    </visual>
+
+        <!-- Se deben cambiar los parametros reales-->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.07 0.07 0.07"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+
+</link>
+
+</xacro:macro>
 
 </robot> 

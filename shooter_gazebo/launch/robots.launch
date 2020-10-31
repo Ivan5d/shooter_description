@@ -26,11 +26,24 @@
       <arg name="robot_name" value="robot_2" />
     </include-->
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="'-x 0 -y 0 -z 0' -urdf -param /robot_description_2 -model torpedoes"/>
+     args="'-x 0 -y -5 -z 0' -urdf -param /robot_description_2 -model torpedoes_0"/>
+  </group>
+
+  <!-- BEGIN ROBOT 3-->
+  <group ns="robot3">
+    <param name="tf_prefix" value="robot3_tf" />
+    <!-- include file="$(find shooter_description)/shooter_gazebo/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x 0 -y 0 -z 0" />
+      <arg name="robot_name" value="robot_2" />
+    </include-->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+     args="'-x 0 -y 5 -z 0' -urdf -param /robot_description_2 -model torpedoes_1"/>
   </group>
 
 </launch>
 
 <!-- MULTIPLE ROBOT SIMULATION ON GAZEBO 
-        https://answers.ros.org/question/360480/multi-robot-simulation-on-gazebo/-->
+        https://answers.ros.org/question/360480/multi-robot-simulation-on-gazebo/
+        https://answers.ros.org/question/41433/multiple-robots-simulation-and-navigation/[link%20text](%3Ca%20href= 
+        -->
         

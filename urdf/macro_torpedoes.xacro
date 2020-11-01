@@ -4,12 +4,12 @@
 <!-- Introducir meshes -->
 <xacro:property name="visual_mesh_file" value="file://$(find shooter_description)/meshes/Torpedo_simulacion_origen_corregido.dae" />
 
-<xacro:macro name="macro_torpedoes" params="id">
+<xacro:macro name="macro_torpedoes" params="id *origin">
 <!-- <origin xyz="0.085 (0 -0.085) 0 0" rpy="0.0 0.0 1.57075"/> -->
 
 <link name="torpedoes_${id}">
     <visual>
-        <origin xyz="0.085 0 0" rpy="0.0 0.0 1.57075"/>
+        <xacro:insert_block name="origin"/>
         <geometry>
             <mesh filename="${visual_mesh_file}" scale="0.001 0.001 0.001" />      
         </geometry>

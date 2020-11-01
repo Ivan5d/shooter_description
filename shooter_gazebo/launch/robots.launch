@@ -1,18 +1,16 @@
 <launch>
   <!-- No namespace here as we will share this description. 
        Access with slash at the beginning -->
-  <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/shooter.xacro' "/>
-
-  <param name="robot_description_2"
-    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes.xacro' "/> 
 
   <!-- BEGIN ROBOT 1-->
   <group ns="robot1">
     <param name="tf_prefix" value="robot1_tf" />
-    
+
+    <param name="robot_description"
+        command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/shooter.xacro' "/> 
+
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args= "-urdf -param /robot_description -model shooter"/>
+     args= "-urdf -param robot_description -model shooter"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
@@ -20,18 +18,14 @@
   <group ns="robot2">
     <param name="tf_prefix" value="robot2_tf" />
 
+  <param name="robot_description"
+    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes.xacro' "/> 
+
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="-urdf -param /robot_description_2 -model torpedoes_0"/>
+     args="-urdf -param robot_description -model torpedoes_0"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
-  <!-- BEGIN ROBOT 3-->
-  <group ns="robot3">
-    <param name="tf_prefix" value="robot3_tf" />
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="-urdf -param /robot_description_2 -model torpedoes_1"/>
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
-  </group>
 
 </launch>
 

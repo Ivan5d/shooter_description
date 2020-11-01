@@ -10,8 +10,7 @@
             <mesh filename="${visual_mesh_file}" scale="0.001 0.001 0.001"/>      
         </geometry>
     </visual>
-    
-    <!-- Se deben cambiar los parametros reales-->
+
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="shooter" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+085
 <xacro:property name="visual_mesh_file" value="file://$(find shooter_description)/meshes/base_simulacion_origen_corregido.dae" />
 
 <link name="base_link">
@@ -14,7 +14,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <box size="0.01 0.01 0.01"/>
+        <box size="0.001 0.001 0.001"/>
       </geometry>
     </collision>
 

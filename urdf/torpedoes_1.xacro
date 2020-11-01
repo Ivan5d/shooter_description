@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<robot name="macro_torpedoes" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="torpedoes_2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <!-- Incluir el archivo de la macro -->
 <xacro:include filename="$(find shooter_description)/urdf/macro_torpedoes.xacro"/>
 
-<xacro:macro_torpedoes id="1">
-  <origin xyz="0.085 0 0" rpy="0.0 0.0 1.5757"/>
+<xacro:macro_torpedoes id="2">
+  <origin xyz="-0.085 0 0" rpy="0.0 0.0 1.5757"/>
 </xacro:macro_torpedoes>
 
 </robot> 

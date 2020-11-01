@@ -11,9 +11,8 @@
   <group ns="robot1">
     <param name="tf_prefix" value="robot1_tf" />
     
-    <arg name="init_pose" value="'-x -10 -y -10 -z 5'"/>
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args= "'-x 15 -y -15 -z 0' -urdf -param /robot_description -model shooter"/>
+     args= "-urdf -param /robot_description -model shooter"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
@@ -22,7 +21,7 @@
     <param name="tf_prefix" value="robot2_tf" />
 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="'-x 15 -y -15 -z 0' -urdf -param /robot_description_2 -model torpedoes_0"/>
+     args="-urdf -param /robot_description_2 -model torpedoes_0"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
@@ -30,7 +29,7 @@
   <group ns="robot3">
     <param name="tf_prefix" value="robot3_tf" />
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="'-x 0 -y 5 -z 0' -urdf -param /robot_description_2 -model torpedoes_1"/>
+     args="-urdf -param /robot_description_2 -model torpedoes_1"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
   </group>
 

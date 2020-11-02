@@ -4,10 +4,10 @@ import rospy
 
 from std_msgs.msg import String
     
-    def callback(data):
-        rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
         
-    def listener():
+def listener():
     
     # In ROS, nodes are uniquely named. If two nodes with the same
     # name are launched, the previous one is kicked off. The
@@ -15,12 +15,12 @@ from std_msgs.msg import String
     # name for our 'listener' node so that multiple listeners can
     # run simultaneously.
 
-        rospy.init_node('listener', anonymous=True)
+    rospy.init_node('listener', anonymous=True)
    
-        rospy.Subscriber("topico_llamado_chatter", String, callback)
+    rospy.Subscriber("topico_llamado_chatter", String, callback)
    
-        # spin() simply keeps python from exiting until this node is stopped
-        rospy.spin()
+    # spin() simply keeps python from exiting until this node is stopped
+    rospy.spin()
    
-    if __name__ == '__main__':
-        listener()
+if __name__ == '__main__':
+    listener()

@@ -31,7 +31,6 @@ def getKey():
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
-
 #--------------------------------------------
 def talker():
     #Publica: topic named chatter, type String, 
@@ -45,6 +44,9 @@ def talker():
 
     while not rospy.is_shutdown():
         key = getKey()
+        #This key is control+c for killing the terminal
+        if (key == '\x03'):
+            break
         hello_str = ".. %s" % key
         rospy.loginfo(hello_str)
         pub.publish(hello_str)
@@ -53,7 +55,6 @@ def talker():
 if __name__ == '__main__':
     if os.name != 'nt':
         settings = termios.tcgetattr(sys.stdin)
-    
     try:
         talker()
     except rospy.ROSInterruptException:

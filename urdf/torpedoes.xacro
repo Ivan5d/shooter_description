@@ -8,7 +8,7 @@
   <origin xyz="0.085 0 0" rpy="0.0 0.0 1.5757"/>
 </xacro:macro_torpedoes>
 
-<!-- gazebo>
+<gazebo>
   <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
     <commandTopic>/Shoot_Torpedo_2</commandTopic>
     <odometryTopic>odom</odometryTopic>
@@ -17,6 +17,6 @@
     <robotBaseFrame>torpedoes_2</robotBaseFrame>
     <publishTF>false</publishTF>
   </plugin>
-</gazebo -->
+</gazebo >
 
 </robot> 

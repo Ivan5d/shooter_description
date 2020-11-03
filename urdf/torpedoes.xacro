@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="macro_torpedoes" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="torpedoes_1" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <!-- Incluir el archivo de la macro -->
 <xacro:include filename="$(find shooter_description)/urdf/macro_torpedoes.xacro"/>
@@ -10,11 +10,11 @@
 
 <gazebo>
   <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
-    <commandTopic>/Shoot_Torpedo_2</commandTopic>
+    <commandTopic>/Shoot_Torpedo_1</commandTopic>
     <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
     <odometryRate>20.0</odometryRate>
-    <robotBaseFrame>torpedoes_2</robotBaseFrame>
+    <robotBaseFrame>torpedoes_1</robotBaseFrame>
     <publishTF>false</publishTF>
   </plugin>
 </gazebo >

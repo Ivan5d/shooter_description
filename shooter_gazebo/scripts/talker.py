@@ -16,6 +16,19 @@ else:
   import tty, termios
 
 target_linear_vel = 0.0
+status = 0
+
+msg = """
+Shoot Torpedoes
+---------------------------
+Moving around:
+    q = Torpedoes_1
+    w = Torpedoes_2
+    a = Shoot
+    s = Stop
+
+CTRL-C to quit
+"""
 
 def getKey():
     if os.name == 'nt':
@@ -34,28 +47,30 @@ def getKey():
 #--------------------------------------------
 def talker():
     #Publica: topic named chatter, type String, 
-    pub = rospy.Publisher('Shoot_Torpedo_2', Twist, queue_size=10)
-    
+    pub = rospy.Publisher('Shoot_Torpedo_1', Twist, queue_size=10)
+    pub2 = rospy.Publisher('Shoot_Torpedo_2', Twist, queue_size=10)
+
     #Inicia el nodo
-    rospy.init_node('Torpedo_2', anonymous=True)
+    rospy.init_node('Torpedoes', anonymous=True)
 
     #10 veces por segundo
     rate = rospy.Rate(10) 
 
     target_linear_vel = 0
+    status = 0
 
     while not rospy.is_shutdown():
         key = getKey()
-        if key=='q':
+        if key=='a':
             target_linear_vel = 0.5
-        elif key=='w':
+        elif key=='s':
             target_linear_vel = 0
         #This key is control+c for killing the terminal
         if (key == '\x03'):
             break
-        hello_str = ".. %s" % key
-        rospy.loginfo(hello_str)
-        
+        rospy.loginfo(key)
+        status = status + 1
+
         twist=Twist()
         
         twist.linear.x = 0.0 
@@ -65,7 +80,14 @@ def talker():
         twist.angular.y = 0.0
         twist.angular.z = 0.0 
 
-        pub.publish(twist)
+        if status == 20 :
+            print (msg) 
+            status = 0
+
+        if key == 'q':
+            pub.publish(twist)
+        elif key == 'w': 
+            pub2.publish(twist)
         rate.sleep()
    
 if __name__ == '__main__':

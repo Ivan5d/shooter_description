@@ -35,7 +35,7 @@ def getKey():
 def talker():
     #Publica: topic named chatter, type String, 
     pub = rospy.Publisher('Shoot_Torpedo_2', Twist, queue_size=10)
- 
+    
     #Inicia el nodo
     rospy.init_node('Torpedo_2', anonymous=True)
 
@@ -47,7 +47,7 @@ def talker():
     while not rospy.is_shutdown():
         key = getKey()
         if key=='q':
-            target_linear_vel = 0.1
+            target_linear_vel = 0.5
         elif key=='w':
             target_linear_vel = 0
         #This key is control+c for killing the terminal
@@ -58,8 +58,12 @@ def talker():
         
         twist=Twist()
         
-        twist.linear.x = target_linear_vel; twist.linear.y = 0.0; twist.linear.z = 0.0
-        twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0 
+        twist.linear.x = 0.0 
+        twist.linear.y = target_linear_vel
+        twist.linear.z = 0.0  
+        twist.angular.x = 0.0
+        twist.angular.y = 0.0
+        twist.angular.z = 0.0 
 
         pub.publish(twist)
         rate.sleep()

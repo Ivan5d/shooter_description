@@ -15,7 +15,7 @@ if os.name == 'nt':
 else:
   import tty, termios
 
-TORPEDO_MAX_LIN_VEL = 0.22
+target_linear_vel = 0.0
 
 def getKey():
     if os.name == 'nt':
@@ -34,22 +34,34 @@ def getKey():
 #--------------------------------------------
 def talker():
     #Publica: topic named chatter, type String, 
-    pub = rospy.Publisher('topico_llamado_chatter', String, queue_size=10)
+    pub = rospy.Publisher('Shoot_Torpedo_2', Twist, queue_size=10)
  
     #Inicia el nodo
-    rospy.init_node('talker', anonymous=True)
+    rospy.init_node('Torpedo_2', anonymous=True)
 
     #10 veces por segundo
     rate = rospy.Rate(10) 
 
+    target_linear_vel = 0
+
     while not rospy.is_shutdown():
         key = getKey()
+        if key=='q':
+            target_linear_vel = 0.1
+        elif key=='w':
+            target_linear_vel = 0
         #This key is control+c for killing the terminal
         if (key == '\x03'):
             break
         hello_str = ".. %s" % key
         rospy.loginfo(hello_str)
-        pub.publish(hello_str)
+        
+        twist=Twist()
+        
+        twist.linear.x = target_linear_vel; twist.linear.y = 0.0; twist.linear.z = 0.0
+        twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0 
+
+        pub.publish(twist)
         rate.sleep()
    
 if __name__ == '__main__':

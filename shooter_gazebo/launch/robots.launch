@@ -1,41 +1,42 @@
 <launch>
-  <!-- No namespace here as we will share this description. 
-       Access with slash at the beginning -->
 
-  <!-- BEGIN ROBOT 1-->
+  <!-- Begin Shooter -->
   <group ns="Shooter_base">
     <param name="tf_prefix" value="robot1_tf" />
-
     <param name="robot_description"
-        command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/shooter.xacro' "/> 
-
+          command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/shooter.xacro' "/> 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args= "-urdf -param robot_description -model shooter"/>
+          args= "-urdf -param robot_description -model shooter"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
-  <!-- BEGIN ROBOT 2-->
+  <!-- Begin Torpedoes_0 -->
   <group ns="Torpedoes_0">
     <param name="tf_prefix" value="robot2_tf" />
-
-  <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes.xacro' "/> 
-
+    <param name="robot_description"
+          command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes.xacro' "/> 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="-urdf -param robot_description -model torpedoes_0"/>
+          args="-urdf -param robot_description -model torpedoes_0"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
-  <!-- BEGIN ROBOT 3-->
+  <!-- Begin Torpedoes_1 -->
   <group ns="Torpedoes_1">
     <param name="tf_prefix" value="robot3_tf" />
-
-  <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes_1.xacro' "/> 
-
+    <param name="robot_description"
+          command="$(find xacro)/xacro --inorder '$(find shooter_description)/urdf/torpedoes_1.xacro' "/> 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-     args="-urdf -param robot_description -model torpedoes_1"/>
+          args="-urdf -param robot_description -model torpedoes_1"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+  </group>
+
+  <!-- Begin RealSense Camera -->
+  <group ns="RealSense">
+    <param name="tf_prefix" value="robot3_tf" />
+    <param name="robot_description"
+          command="$(find xacro)/xacro --inorder '$(find realsense_gazebo_plugin)/urdf/rs200_simulation.xacro' "/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+          args="-urdf -param robot_description -model RealSense_Camera" />
   </group>
 
 </launch>

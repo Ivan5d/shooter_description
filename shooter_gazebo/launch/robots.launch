@@ -30,14 +30,14 @@
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
   </group>
 
-  <!-- Begin RealSense Camera -->
-  <group ns="RealSense">
-    <param name="tf_prefix" value="robot3_tf" />
-    <param name="robot_description"
-          command="$(find xacro)/xacro --inorder '$(find realsense_gazebo_plugin)/urdf/rs200_simulation.xacro' "/>
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
-          args="-urdf -param robot_description -model RealSense_Camera" />
-  </group>
+ <!-- Begin RealSense Camera-->
+ <group ns="RealSense_Camera">
+      <param name="robot_description"
+        command="$(find xacro)/xacro --inorder '$(find realsense_gazebo_plugin)/urdf/rs200_simulation.xacro'"/>
+      <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" 
+            args="-urdf -param robot_description -model rs200"/>
+      <node name="state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+</group> 
 
 </launch>
 
@@ -45,4 +45,3 @@
         https://answers.ros.org/question/360480/multi-robot-simulation-on-gazebo/
         https://answers.ros.org/question/41433/multiple-robots-simulation-and-navigation/[link%20text](%3Ca%20href= 
         -->
-        
